@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.pos.saltandpepper.LoginController">
+<VBox alignment="CENTER" prefHeight="456.0" prefWidth="362.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.saltandpepper.LoginController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <children>
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="313.0">
+         <children>
+            <TextField fx:id="txtUsername" layoutX="41.0" layoutY="106.0" prefHeight="38.0" prefWidth="230.0" />
+            <PasswordField fx:id="txtPassword" layoutX="41.0" layoutY="181.0" prefHeight="38.0" prefWidth="230.0" />
+            <Button fx:id="btnLogin" layoutX="56.0" layoutY="247.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="56.0" prefWidth="201.0" text="Login" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGoToRegister" layoutX="81.0" layoutY="327.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="39.0" prefWidth="160.0" text="Register an user">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="101.0" layoutY="20.0" text="Login">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelWarning" layoutX="58.0" layoutY="149.0" textFill="#ff0d0d" text="">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
 </VBox>
