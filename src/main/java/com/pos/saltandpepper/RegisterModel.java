@@ -3,6 +3,8 @@ package com.pos.saltandpepper;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.util.Base64;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 /**
  * Model class responsible for handling user registration operations.
@@ -24,7 +26,7 @@ public class RegisterModel {
             secureRandom.nextBytes(salt);
 
             // Combine the pepper, salt, and password
-            String saltedPassword = PEPPER + Base64.getEncoder().encodeToString(salt) + pass;
+            String hashedPassword = hashedPassword(PEPPER, salt, pass);
 
             Connection connection = SqliteConnection.Connector();
 
@@ -32,7 +34,7 @@ public class RegisterModel {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, user);
-            preparedStatement.setString(2, saltedPassword);
+            preparedStatement.setString(2, hashedPassword);
             preparedStatement.setBytes(3, salt);
 
             preparedStatement.executeUpdate();
@@ -77,5 +79,10 @@ public class RegisterModel {
             System.err.println("Failed: " + e.getMessage());
         }
         return false;
+    }
+
+    public String hashedPassword(String pepper, byte[] salt, String pass) {
+        String saltedPassword = pepper + Base64.getEncoder().encodeToString(salt) + pass;
+        return BCrypt.hashpw(saltedPassword, BCrypt.gensalt());
     }
 }

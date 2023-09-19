@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SaltAndPepper_jar</output-path>
     <root id="archive" name="SaltAndPepper.jar">
       <element id="module-output" name="SaltAndPepper" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../sqlite-jdbc-3.7.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar" path-in-jar="/" />

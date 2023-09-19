@@ -1,5 +1,7 @@
 package com.pos.saltandpepper;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.*;
 import java.util.Base64;
 
@@ -8,6 +10,7 @@ import java.util.Base64;
  */
 public class LoginModel {
     Connection connection;
+    RegisterModel registerModel = new RegisterModel();
 
     /**
      * Checks if the database connection is active.
@@ -42,17 +45,17 @@ public class LoginModel {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                String saltedPasswordFromDB = resultSet.getString("password");
+                String hashedPasswordFromDB = resultSet.getString("password");
                 byte[] saltFromDB = resultSet.getBytes("salt");
 
                 // Combine everything
-                String saltedPasswordToCheck = PEPPER + Base64.getEncoder().encodeToString(saltFromDB) + password;
+                String saltedPassword = PEPPER + Base64.getEncoder().encodeToString(saltFromDB) + password;
 
                 resultSet.close();
                 preparedStatement.close();
                 connection.close();
 
-                return saltedPasswordFromDB.equals(saltedPasswordToCheck);
+                return BCrypt.checkpw(saltedPassword, hashedPasswordFromDB);
             }
 
             resultSet.close();
